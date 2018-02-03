@@ -1,5 +1,6 @@
 body {
     width: 33%;
+    min-width: 200px;
 }
 
 .res {

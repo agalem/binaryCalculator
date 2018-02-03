@@ -11,34 +11,51 @@ const div = document.getElementById('btnDiv');
 
 let firstNumber;
 let secondNumber;
+let operator;
 
 
 const getFirstNumber = () => {
     firstNumber = input.innerHTML;
-    console.log(firstNumber);
 };
 
 const getSecondNumber = () => {
     if (input.innerHTML.indexOf('+') > -1) {
         secondNumber = input.innerHTML.slice((input.innerHTML.indexOf('+')+1), input.innerHTML.length);
-        console.log(secondNumber);
+        operator  = '+';
     } else if (input.innerHTML.indexOf('-') > -1) {
         secondNumber = input.innerHTML.slice((input.innerHTML.indexOf('-')+1), input.innerHTML.length);
-        console.log(secondNumber);
+        operator = '-';
     } else if (input.innerHTML.indexOf('*') > -1) {
         secondNumber = input.innerHTML.slice((input.innerHTML.indexOf('*')+1), input.innerHTML.length);
-        console.log(secondNumber);
+        operator = '*';
     } else if (input.innerHTML.indexOf('/') > -1) {
         secondNumber = input.innerHTML.slice((input.innerHTML.indexOf('/')+1), input.innerHTML.length);
-        console.log(secondNumber);
+        operator = '/';
     } else {
         console.log('No operator');
     }
 };
 
-/*const countOutput = () =>  {
+const countSum = () =>  {
+    let output = Number(parseInt(firstNumber, 2)) + Number(parseInt(secondNumber,2));
+    input.innerHTML = output.toString(2);
+};
 
-}*/
+const countSub =() => {
+    let output = Number(parseInt(firstNumber, 2)) - Number(parseInt(secondNumber,2));
+    input.innerHTML = output.toString(2);
+};
+
+const countMul = () => {
+    let output = Number(parseInt(firstNumber, 2)) * Number(parseInt(secondNumber,2));
+    input.innerHTML = output.toString(2);
+};
+
+const countDiv = () => {
+    let output = Number(parseInt(firstNumber, 2)) / Number(parseInt(secondNumber,2));
+    input.innerHTML = output.toString(2);
+};
+
 
 const disableBtns = () => {
     const btns = document.getElementsByClassName('btn-count');
@@ -49,7 +66,7 @@ const disableBtns = () => {
 };
 
 
-const enableBtn = (btn) => {
+const enableBtns = () => {
     const btns = document.getElementsByClassName('btn-count');
     for(let i=0; i< btns.length; i++){
         btns[i].style.backgroundColor = 'black';
@@ -73,25 +90,19 @@ one.addEventListener('click', function () {
     displayChanges(this);
 });
 
+for(let i=0; i<document.getElementsByClassName('btn-count').length; i++){
+    document.getElementsByClassName('btn-count')[i].addEventListener('click', function () {
+        getFirstNumber();
+        displayChanges(this);
+        disableBtns();
+    })
+}
+
 sum.addEventListener('click', function () {
     getFirstNumber();
     displayChanges(this);
 });
 
-sub.addEventListener('click', function () {
-    getFirstNumber();
-    displayChanges(this);
-});
-
-mul.addEventListener('click', function () {
-    getFirstNumber();
-    displayChanges(this);
-});
-
-div.addEventListener('click', function () {
-    getFirstNumber();
-    displayChanges(this);
-});
 
 clear.addEventListener('click', function () {
     clearInput();
@@ -99,4 +110,14 @@ clear.addEventListener('click', function () {
 
 equal.addEventListener('click', function () {
     getSecondNumber();
+    if(operator === '+'){
+        countSum();
+    } else if (operator === '-'){
+        countSub();
+    } else if (operator === '*'){
+        countMul();
+    } else if (operator === '/'){
+        countDiv();
+    }
+    enableBtns();
 });
