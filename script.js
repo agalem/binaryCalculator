@@ -52,7 +52,8 @@ const countMul = () => {
 };
 
 const countDiv = () => {
-    let output = Math.floor(Number(parseInt(firstNumber, 2)) / Number(parseInt(secondNumber,2)));
+    let output = Number(parseInt(firstNumber, 2)) / Number(parseInt(secondNumber,2));
+    output = Math.floor(output);
     input.innerHTML = output.toString(2);
 };
 
