@@ -52,8 +52,9 @@ const countMul = () => {
 };
 
 const countDiv = () => {
-    let output = Math.floor(Number(parseInt(firstNumber, 2)) / Number(parseInt(secondNumber,2)));
-    input.innerHTML = output.toString(2);
+    let output = Number(parseInt(firstNumber, 2)) / Number(parseInt(secondNumber,2));
+    let rounded =  Math.floor(output);
+    input.innerHTML = rounded.toString(2);
 };
 
 
@@ -97,12 +98,6 @@ for(let i=0; i<document.getElementsByClassName('btn-count').length; i++){
         disableBtns();
     })
 }
-
-sum.addEventListener('click', function () {
-    getFirstNumber();
-    displayChanges(this);
-});
-
 
 clear.addEventListener('click', function () {
     clearInput();
