@@ -99,12 +99,6 @@ for(let i=0; i<document.getElementsByClassName('btn-count').length; i++){
     })
 }
 
-sum.addEventListener('click', function () {
-    getFirstNumber();
-    displayChanges(this);
-});
-
-
 clear.addEventListener('click', function () {
     clearInput();
 });
